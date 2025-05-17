@@ -15,6 +15,13 @@ const db = mysql.createPool({
     database: "crud_contact"
 });
 
+app.get("/api/get", (req, res) => {
+    const selectDB = "select * from contact_db";
+    db.query(selectDB, (err, result)=>{
+        res.send(result);
+    })
+})
+
 app.get("/", (req, res) => {
     const insertDB = "INSERT INTO contact_db (name, email, contact) VALUES ('luciana', 'luciana@cls.com', '9293949596')";
     db.query(insertDB, (err, result) => {
