@@ -23,14 +23,24 @@ app.get("/api/get", (req, res) => {
 })
 
 app.get("/", (req, res) => {
-    const insertDB = "INSERT INTO contact_db (name, email, contact) VALUES ('luciana', 'luciana@cls.com', '9293949596')";
+    /*const insertDB = "INSERT INTO contact_db (name, email, contact) VALUES ('luciana', 'luciana@cls.com', '9293949596')";
     db.query(insertDB, (err, result) => {
         console.log("erro", err);
         console.log("result", result)
-        res.send("Hello Express")
-
-    })
+        
+        })*/
+   res.send("Hello Express")
 })
+
+app.post("api/post", (req, res)=>{
+    const {name, email, contact} = req.body;
+    const insertDB = "INSERT INTO contact_db (name, email, contact) VALUES (?, ?, ?)";
+    db.query(insertDB, [name, email, contact], (error)=>{
+        if(error){
+            console.log(error);
+        }
+    });
+});
 
 app.listen(5000, () => {
     console.log("Server is running on port 5000")
