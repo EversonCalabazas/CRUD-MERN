@@ -29,6 +29,7 @@ const AddEdit = () => {
                 setState({name:"", email:"", contact:""});
             })
             .catch((err) => toast.error(err.response.data));
+            toast.success("Contact added sucessfully!")
             setTimeout(()=>{
                 navigate("/");
             }, 500);

@@ -27,7 +27,6 @@ app.get("/", (req, res) => {
     db.query(insertDB, (err, result) => {
         console.log("erro", err);
         console.log("result", result)
-        
         })*/
    res.send("Hello Express")
 })
@@ -36,6 +35,16 @@ app.post("/api/post", (req, res)=>{
     const {name, email, contact} = req.body;
     const insertDB = "INSERT INTO contact_db (name, email, contact) VALUES (?, ?, ?)";
     db.query(insertDB, [name, email, contact], (error)=>{
+        if(error){
+            console.log(error);
+        }
+    });
+});
+
+app.delete("/api/remove/:id", (req, res)=>{
+    const {id} = req.params;
+    const removeDB = "delete from contact_db where id = ?";
+    db.query(removeDB, id, (error)=>{
         if(error){
             console.log(error);
         }
