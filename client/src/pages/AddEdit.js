@@ -1,8 +1,8 @@
 import React, {useState /*useEffect*/} from "react";
-import {/*useHistory, useParams,*/ Link} from "react-router-dom";
+import {useNavigate, /*useParams,*/ Link} from "react-router-dom";
 import "../pages/AddEdit.css";
-//import axios from "axios";
-//import { toast } from "react-toastify";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const initialState ={
     name: "",
@@ -14,10 +14,27 @@ const AddEdit = () => {
     const [state, setState] = useState(initialState);
     
     const {name, email, contact} = state;
+
+    const navigate = useNavigate();
     
     const handleSubmit = (e) =>{
         e.preventDefault();
-    }
+        if(!name || !email || !contact){
+            toast.error("Please, provide values into each input fields");
+        }else{
+            axios
+            .post("http://localhost:5000/api/post", {
+                name, email, contact,})
+            .then(()=> {
+                setState({name:"", email:"", contact:""});
+            })
+            .catch((err) => toast.error(err.response.data));
+            setTimeout(()=>{
+                navigate("/");
+            }, 500);
+        }
+    };
+    
 
     const handleInputChange = (e)=>{
         const {name, value} = e.target;
@@ -64,7 +81,7 @@ const AddEdit = () => {
                 onChange={handleInputChange}
                 /> 
 
-                <input type="submit" />
+                <input type="submit" value="Save"/>
                 <Link to="/">
                     <input type="button" value="Go Back"/>
                 </Link>
