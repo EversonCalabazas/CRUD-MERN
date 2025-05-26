@@ -18,7 +18,7 @@ const Home = () => {
 
     return (
         <div style={{marginTop: "15px"}}>
-            <Link to={"/addEdit"}>
+            <Link to={"/AddEdit"}>
                 <button className="btn btn-contact">Add Contact</button>
             </Link>
             <table className="styled-table">
