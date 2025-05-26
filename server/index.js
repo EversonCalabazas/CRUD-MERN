@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
    res.send("Hello Express")
 })
 
-app.post("api/post", (req, res)=>{
+app.post("/api/post", (req, res)=>{
     const {name, email, contact} = req.body;
     const insertDB = "INSERT INTO contact_db (name, email, contact) VALUES (?, ?, ?)";
     db.query(insertDB, [name, email, contact], (error)=>{
