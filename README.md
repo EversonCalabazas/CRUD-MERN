@@ -4,3 +4,9 @@
 - Express;
 - React;
 - NodeJS
+
+## Nesta aplicação,foram utilizadas:
+- React Hooks: useState, useEffect;
+- React-router-dom: useNavigate, useParams, Link;
+- Axios;
+- React-Toastify;
